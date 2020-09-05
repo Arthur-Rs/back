@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components/native'
 
 const lightTheme: DefaultTheme = {
   name: 'light',
@@ -25,6 +25,6 @@ const lightTheme: DefaultTheme = {
       distance: '15px',
     },
   },
-};
+}
 
-export default lightTheme;
+export default lightTheme

@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
 
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -10,13 +10,13 @@ export const Container = styled.TouchableOpacity`
 
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.background};
-`;
+`
 
 export const CircleContainer = styled.View`
   width: 142px;
   align-items: center;
-  justify-content:center;
-`;
+  justify-content: center;
+`
 export const Content = styled.View`
   flex: 1;
   height: 100%;
@@ -24,28 +24,28 @@ export const Content = styled.View`
   padding-bottom: 15px;
   padding-left: 5px;
   align-items: flex-start;
-`;
+`
 
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 22px;
-`;
+`
 export const Ammount = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 26px;
-`;
+`
 
 export const Goal = styled.Text`
   color: ${({ theme }) => theme.colors.textGray};
   font-size: 12px;
-`;
+`
 
 export const PercentText = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 18px;
-`;
+`
 
 export const DateLimit = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 16px;
-`;
+`

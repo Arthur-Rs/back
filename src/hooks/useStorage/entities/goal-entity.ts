@@ -12,4 +12,4 @@ class GoalEntity {
   date?: Date
 }
 
-export default GoalEntity;
+export default GoalEntity

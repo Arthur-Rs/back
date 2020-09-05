@@ -1,22 +1,17 @@
-import React from 'react';
-import { RectButtonProperties } from 'react-native-gesture-handler';
-import { useTheme } from '../../../hooks/useTheme';
+import React from 'react'
+import { TouchableOpacityProps } from 'react-native'
+import { useTheme } from '../../../hooks/useTheme'
 
-import {
-  Container,
-  Button,
-} from './styles';
+import { Container } from './styles'
 
-import AddIcon from '../../../assets/icons/add.svg';
+import AddIcon from '../../../assets/icons/add.svg'
 
-const Add: React.FC<RectButtonProperties> = ({ ...rest }) => {
-  const { theme } = useTheme();
+const Add: React.FC<TouchableOpacityProps> = ({ ...rest }) => {
+  const { theme } = useTheme()
   return (
-    <Container>
-      <Button {...rest}>
-        <AddIcon width={24} height={24} fill={theme.colors.text} />
-      </Button>
+    <Container {...rest}>
+      <AddIcon width={24} height={24} fill={theme.colors.textWhite} />
     </Container>
-  );
-};
-export default Add;
+  )
+}
+export default Add

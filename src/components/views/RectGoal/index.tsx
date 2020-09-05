@@ -1,12 +1,12 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react'
 
-import {TouchableOpacityProps, View} from 'react-native';
+import { TouchableOpacityProps, View } from 'react-native'
 
-import ProgressCircle from 'react-native-progress-circle';
+import ProgressCircle from 'react-native-progress-circle'
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
-import {MonetaryFormatter} from '../../../utils/monetary-formatter';
+import { MonetaryFormatter } from '../../../utils/monetary-formatter'
 
 import {
   Container,
@@ -17,18 +17,18 @@ import {
   DateLimit,
   Goal,
   PercentText,
-} from './styles';
+} from './styles'
 
-import {useTheme} from '../../../hooks/useTheme';
+import { useTheme } from '../../../hooks/useTheme'
 
-import {DistanceDateFormatter} from '../../../utils/distance-date-formatter';
+import { DistanceDateFormatter } from '../../../utils/distance-date-formatter'
 
 interface RectGoalProps extends TouchableOpacityProps {
-  id: string;
-  title: string;
-  amount: number;
-  goal: number;
-  dateLimit?: Date;
+  id: string
+  title: string
+  amount: number
+  goal: number
+  dateLimit?: Date
 }
 
 const RectGoal: React.FC<RectGoalProps> = ({
@@ -38,14 +38,14 @@ const RectGoal: React.FC<RectGoalProps> = ({
   goal,
   dateLimit,
 }) => {
-  const {theme} = useTheme();
-  const {navigate} = useNavigation();
+  const { theme } = useTheme()
+  const { navigate } = useNavigation()
 
   const handlePress = useCallback(() => {
     navigate('dashboard-goal', {
       id,
-    });
-  }, [navigate, id]);
+    })
+  }, [navigate, id])
 
   return (
     <>
@@ -72,15 +72,15 @@ const RectGoal: React.FC<RectGoalProps> = ({
           {dateLimit && (
             <DateLimit>
               {() => {
-                const date = new Date(dateLimit);
-                return DistanceDateFormatter(date);
+                const date = new Date(dateLimit)
+                return DistanceDateFormatter(date)
               }}
             </DateLimit>
           )}
         </Content>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default RectGoal;
+export default RectGoal

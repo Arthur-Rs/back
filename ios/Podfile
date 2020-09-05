@@ -30,6 +30,11 @@ target 'Jotting' do
 
   pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
+  pod 'WatermelonDB', :path => '../node_modules/@nozbe/watermelondb'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
+
+
   target 'JottingTests' do
     inherit! :complete
     # Pods for testing

@@ -1,21 +1,21 @@
-import React, {useCallback} from 'react';
-import {StatusBar as ExpoStatusBar, StatusBarProps} from 'react-native';
+import React, { useCallback } from 'react'
+import { StatusBar as ExpoStatusBar, StatusBarProps } from 'react-native'
 
 // => hooks
-import {useTheme} from '../../../hooks/useTheme';
+import { useTheme } from '../../../hooks/useTheme'
 
-type StatusColors = 'light-content' | 'dark-content' | 'default' | undefined;
+type StatusColors = 'light-content' | 'dark-content' | 'default' | undefined
 
-const StatusBar: React.FC<StatusBarProps> = ({...rest}) => {
-  const {theme} = useTheme();
+const StatusBar: React.FC<StatusBarProps> = ({ ...rest }) => {
+  const { theme } = useTheme()
 
   const getStatusBarStyles = useCallback((): StatusColors => {
     if (theme.name === 'dark') {
-      return 'light-content';
+      return 'light-content'
     }
 
-    return 'dark-content';
-  }, [theme.name]);
+    return 'dark-content'
+  }, [theme.name])
 
   return (
     <ExpoStatusBar
@@ -24,7 +24,7 @@ const StatusBar: React.FC<StatusBarProps> = ({...rest}) => {
       backgroundColor={theme.colors.background}
       {...rest}
     />
-  );
-};
+  )
+}
 
-export default StatusBar;
+export default StatusBar

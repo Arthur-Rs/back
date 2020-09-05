@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components/native'
 
 const darkTheme: DefaultTheme = {
   name: 'dark',
@@ -25,6 +25,6 @@ const darkTheme: DefaultTheme = {
       distance: '15px',
     },
   },
-};
+}
 
-export default darkTheme;
+export default darkTheme

@@ -1,19 +1,13 @@
-import React, {
-  useCallback,
-} from 'react';
+import React, { useCallback } from 'react'
 
-import { useNavigation } from '@react-navigation/native';
-import {
-  Container,
-  Space,
-  Title,
-} from './styles';
+import { useNavigation } from '@react-navigation/native'
+import { Container, Space, Title } from './styles'
 
 // Buttons
-import AddButton from '../../controllers/Add';
-import GoBackButton from '../../controllers/GoBack';
+import AddButton from '../../controllers/Add'
+import GoBackButton from '../../controllers/GoBack'
 
-interface HeaderProps{
+interface HeaderProps {
   title: string
   addButton?: boolean
   goBackButton?: boolean
@@ -28,31 +22,23 @@ const Header: React.FC<HeaderProps> = ({
   goBackButton = false,
   route = '',
 }) => {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation()
 
   const handleAddButtonPress = useCallback(() => {
-    navigate(route);
-  }, [navigate, route]);
+    navigate(route)
+  }, [navigate, route])
 
   return (
     <Container>
-      {goBackButton
-        ? <GoBackButton />
-        : <Space /> }
+      {goBackButton ? <GoBackButton /> : <Space />}
 
-      <Title
-        pedLeft={goBackButton}
-        pedRight={addButton}
-        size={titleSize}
-      >
+      <Title pedLeft={goBackButton} pedRight={addButton} size={titleSize}>
         {title}
       </Title>
 
-      {addButton
-        ? <AddButton onPress={handleAddButtonPress} />
-        : <Space /> }
+      {addButton ? <AddButton onPress={handleAddButtonPress} /> : <Space />}
     </Container>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

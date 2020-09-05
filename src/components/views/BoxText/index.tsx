@@ -1,10 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import {
-  Container,
-  Content,
-  Title,
-} from './styles';
+import { Container, Content, Title } from './styles'
 
 interface BoxTextProps {
   title: string
@@ -12,15 +8,11 @@ interface BoxTextProps {
   contentSize?: number
 }
 
-const BoxText: React.FC<BoxTextProps> = ({
-  title,
-  content,
-  contentSize,
-}) => (
+const BoxText: React.FC<BoxTextProps> = ({ title, content, contentSize }) => (
   <Container>
     <Title>{title}</Title>
     <Content style={{ fontSize: contentSize || 22 }}>{content}</Content>
   </Container>
-);
+)
 
-export default BoxText;
+export default BoxText

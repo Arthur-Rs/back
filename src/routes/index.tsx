@@ -1,14 +1,15 @@
-import React from 'react';
-import { useProfile } from '../hooks/useProfile';
+import React from 'react'
+import { useProfile } from '../hooks/useProfile'
 
 // => Screens
-import Welcome from '../screens/Welcome';
-import AppRoutes from './app-routes';
+import Welcome from '../screens/Dashboard/Welcome'
+
+import AppRoutes from './app.routes'
 
 const Routes: React.FC = () => {
-  const { data } = useProfile();
+  const { data } = useProfile()
 
-  return data.name ? <AppRoutes /> : <Welcome />;
-};
+  return data.name ? <AppRoutes /> : <Welcome />
+}
 
-export default Routes;
+export default Routes

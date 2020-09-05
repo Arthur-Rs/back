@@ -1,4 +1,4 @@
-export interface CreateFinanceDTO{
+export interface CreateFinanceDTO {
   title: string
   description?: string
   initialValue?: number

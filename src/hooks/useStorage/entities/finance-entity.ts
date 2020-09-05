@@ -1,4 +1,4 @@
-class GoalEntity {
+interface GoalEntity {
   id: string
 
   title: string
@@ -8,4 +8,4 @@ class GoalEntity {
   amount: number
 }
 
-export default GoalEntity;
+export default GoalEntity

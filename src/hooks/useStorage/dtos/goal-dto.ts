@@ -1,4 +1,4 @@
-export interface CreateGoalDTO{
+export interface CreateGoalDTO {
   title: string
   description?: string
   goal: number

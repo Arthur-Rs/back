@@ -1,9 +1,9 @@
-import React from 'react';
-import { Switch as RNSwitch, SwitchProps } from 'react-native-switch';
-import { useTheme } from '../../../hooks/useTheme';
+import React from 'react'
+import { Switch as RNSwitch, SwitchProps } from 'react-native-switch'
+import { useTheme } from '../../../hooks/useTheme'
 
-export const Switch:React.FC<SwitchProps> = ({ ...rest }) => {
-  const { theme } = useTheme();
+export const Switch: React.FC<SwitchProps> = ({ ...rest }) => {
+  const { theme } = useTheme()
 
   return (
     <RNSwitch
@@ -23,10 +23,9 @@ export const Switch:React.FC<SwitchProps> = ({ ...rest }) => {
       renderActiveText={false}
       switchLeftPx={2.1}
       switchRightPx={2.15}
-
       switchWidthMultiplier={2}
       switchBorderRadius={28}
       {...rest}
     />
-  );
-};
+  )
+}

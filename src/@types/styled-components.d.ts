@@ -1,28 +1,28 @@
-import 'styled-components/native';
+import 'styled-components/native'
 
-declare module 'styled-components/native'{
-  export interface DefaultTheme{
+declare module 'styled-components/native' {
+  export interface DefaultTheme {
     name: string
-    colors:{
-      primary:string
+    colors: {
+      primary: string
 
-      backgroundDark:string
-      background:string
-      backgroundLight:string
+      backgroundDark: string
+      background: string
+      backgroundLight: string
 
-      income:string
-      outcome:string
+      income: string
+      outcome: string
 
-      text:string
+      text: string
       textWhite: string
       textGray: string
     }
-    layout:{
+    layout: {
       header: {
-        borderRadius:string
+        borderRadius: string
       }
       others: {
-        borderRadius:string
+        borderRadius: string
         distance: string
       }
     }
