@@ -1,5 +1,7 @@
 import React, { useCallback, useRef } from 'react'
 
+import GoalModel from '../../../../storange/models/goal.model'
+
 import {
   ScrollView,
   Vibration,
@@ -44,7 +46,7 @@ const CreateGoal: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
 
-  const { saveGoal } = useStorage()
+  const { db } = useStorage()
   const { dispatch } = useNavigation()
 
   const handleToCreateNewGoal = useCallback(
@@ -74,7 +76,18 @@ const CreateGoal: React.FC = () => {
           abortEarly: false,
         })
 
-        saveGoal(data)
+        const goalsCollection = db.collections.get<GoalModel>('goals')
+
+        await db.action(async () => {
+          await goalsCollection.create((goal) => {
+            goal.title = data.title
+            goal.description = data.description
+            goal.goal = data.goal
+            goal.total = data.initialValue || 0
+            goal.date = data.date
+          })
+        })
+
         dispatch(StackActions.popToTop())
       } catch (err) {
         if (err instanceof yup.ValidationError) {
@@ -86,14 +99,13 @@ const CreateGoal: React.FC = () => {
         }
       }
     },
-    [dispatch, saveGoal],
+    [db, dispatch],
   )
 
   return (
     <ScrollView style={{ flex: 1 }}>
       <Container>
         <Header title="Criar nova meta" goBackButton />
-
         <Form onSubmit={handleToCreateNewGoal} ref={formRef}>
           <Input
             ref={titleRef}

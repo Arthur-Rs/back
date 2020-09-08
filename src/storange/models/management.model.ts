@@ -1,13 +1,14 @@
 import { Model } from '@nozbe/watermelondb'
 import { field, date, children } from '@nozbe/watermelondb/decorators'
 import TransactionManagementModel from './transaction-management.model'
+import { Associations } from '@nozbe/watermelondb/Model'
 
 class ManagementModel extends Model {
   static table = 'managements'
 
   static associations = {
     transactions: { type: 'has_many', foreignKey: 'management_id' },
-  }
+  } as Associations
 
   @field('title')
   title: string

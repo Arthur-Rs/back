@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react'
 
+import withObservables from '@nozbe/with-observables'
+
 import { ActivityIndicator } from 'react-native'
 
 import { Container, Main } from './styles'
 
 // => Hooks
-import { useStorage, GoalEntity } from '../../../hooks/useStorage'
+import { useStorage, database } from '../../../hooks/useStorage'
 
 // => Components
 import RectGoal from '../../../components/views/RectGoal'
 import Header from '../../../components/views/Header'
 import { useTheme } from '../../../hooks/useTheme'
+import GoalModel from '../../../storange/models/goal.model'
 
-const Home: React.FC = () => {
-  const { goalCacheData } = useStorage()
+interface IObservables {
+  goals: GoalModel[]
+}
+
+const Home: React.FC<IObservables> = ({ goals }) => {
   const { theme } = useTheme()
-  const [data, setData] = useState<GoalEntity[]>([])
-
-  useEffect(() => {
-    setData(goalCacheData)
-  }, [goalCacheData])
 
   return (
     <Container>
@@ -30,17 +31,17 @@ const Home: React.FC = () => {
         title="Suas Finanças"
         route="select-type"
       />
-      {data ? (
+      {goals ? (
         <Main>
-          {data &&
-            data.map(({ id, amount, goal, title, date }) => (
+          {goals &&
+            goals.map((goal) => (
               <RectGoal
-                key={id}
-                id={id}
-                title={title}
-                amount={amount}
-                goal={goal}
-                dateLimit={date || undefined}
+                key={goal.id}
+                id={goal.id}
+                title={goal.title}
+                amount={goal.total}
+                goal={goal.goal}
+                dateLimit={goal.date || undefined}
               />
             ))}
         </Main>
@@ -55,4 +56,8 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+const enhance = withObservables(['goals'], ({ goals }) => ({
+  goals: database.collections.get('goals').query().observe(),
+}))
+
+export default enhance(Home)

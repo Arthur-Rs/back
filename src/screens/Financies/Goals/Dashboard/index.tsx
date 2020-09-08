@@ -11,7 +11,8 @@ import {
   NotFoundText,
 } from './styles'
 
-import { useStorage, GoalEntity } from '../../../../hooks/useStorage'
+import { useStorage } from '../../../../hooks/useStorage'
+import GoalModel from '../../../../storange/models/goal.model'
 
 import { useTheme } from '../../../../hooks/useTheme'
 
@@ -36,11 +37,11 @@ interface ScreenProps {
 }
 
 const GoalDashboard: React.FC<ScreenProps> = ({ route = null }) => {
-  const { getOneGoal } = useStorage()
+  const { db } = useStorage()
   const { navigate } = useNavigation()
   const { theme } = useTheme()
 
-  const [data, setData] = useState<GoalEntity>({} as GoalEntity)
+  const [data, setData] = useState<GoalModel>()
 
   useEffect(() => {
     if (!route) {
@@ -53,11 +54,20 @@ const GoalDashboard: React.FC<ScreenProps> = ({ route = null }) => {
       return
     }
 
-    getOneGoal(id).then((goal) => {
-      console.log(goal)
-      setData(goal || ({} as GoalEntity))
-    })
-  }, [getOneGoal, route])
+    db.collections
+      .get<GoalModel>('goals')
+      .find(id)
+      .then((goal) => {
+        goal.collections
+          .get('transactions_goal')
+          .query()
+          .fetch()
+          .then((tr) => {
+            console.log(tr)
+          })
+        setData(goal)
+      })
+  }, [db.collections, route])
 
   const handlePressNewTransaction = useCallback(() => {
     if (!route) {
@@ -74,21 +84,21 @@ const GoalDashboard: React.FC<ScreenProps> = ({ route = null }) => {
     <>
       <Container>
         <Header title="Minha meta" goBackButton />
-        {data.title ? (
+        {data ? (
           <Body>
             <Box title="Informações">
               <ProgressCircle
-                percent={(data.amount / data.goal) * 100}
+                percent={(data.total / data.goal) * 100}
                 radius={90}
                 borderWidth={10}
                 color={theme.colors.primary}
                 shadowColor={theme.colors.backgroundLight}
                 bgColor={theme.colors.background}>
                 <PercentText>
-                  {`${((data.amount / data.goal) * 100).toFixed(1)}%`}
+                  {`${((data.total / data.goal) * 100).toFixed(1)}%`}
                 </PercentText>
 
-                <AmountText>{MonetaryFormatter(data.amount)}</AmountText>
+                <AmountText>{MonetaryFormatter(data.total)}</AmountText>
 
                 <AmountText>{`de ${MonetaryFormatter(data.goal)}`}</AmountText>
               </ProgressCircle>

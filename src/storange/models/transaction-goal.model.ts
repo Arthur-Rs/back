@@ -1,13 +1,14 @@
 import { Model } from '@nozbe/watermelondb'
 import { field, date, relation } from '@nozbe/watermelondb/decorators'
-import GoalModel from './goals.model'
+import { Associations } from '@nozbe/watermelondb/Model'
+import GoalModel from './goal.model'
 
 class TransactionGoalModel extends Model {
   static table = 'transactions_goal'
 
   static associations = {
     goal: { type: 'belongs_to', key: 'goal_id' },
-  }
+  } as Associations
 
   @field('title')
   title: string

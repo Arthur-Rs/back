@@ -1,4 +1,4 @@
-import { Schema } from './schemas'
+import { Schema as schema } from './schemas'
 
 import GoalModel from './models/goal.model'
 import ManagementModel from './models/management.model'
@@ -13,4 +13,4 @@ const Models = [
   TransactionManagement,
 ]
 
-export { Schema, Models }
+export { schema, Models }
